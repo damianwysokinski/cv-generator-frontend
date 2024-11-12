@@ -1,0 +1,30 @@
+mutation UpdateDocument(
+    $id: String!
+    $title: String!
+    $firstName: String!
+    $lastName: String!
+    $position: String!
+    $email: String!
+    $phoneNumber: String!
+    $userId: String!
+) {
+    updateDocument(updateDocumentInput: {
+        id: $id,
+        title: $title,
+        firstName: $firstName,
+        lastName: $lastName,
+        position: $position,
+        email: $email,
+        phoneNumber: $phoneNumber,
+        userId: $userId
+    }) {
+        id
+        title
+        firstName
+        lastName
+        position
+        email
+        phoneNumber
+        userId
+    }
+}

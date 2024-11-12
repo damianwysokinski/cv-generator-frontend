@@ -1,0 +1,14 @@
+query getDocument($id: String!) {
+    document(id: $id) {
+        id
+        title
+        firstName
+        lastName
+        position
+        email
+        phoneNumber
+        userId
+        createdAt
+        updatedAt
+    }
+}

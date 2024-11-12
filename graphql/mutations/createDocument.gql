@@ -1,0 +1,12 @@
+mutation CreateDocument($userId: String!) {
+    createDocument(createDocumentInput: { userId: $userId }) {
+        id
+        title
+        firstName
+        lastName
+        position
+        email
+        phoneNumber
+        userId
+    }
+}
