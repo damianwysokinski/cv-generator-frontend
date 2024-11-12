@@ -1,5 +1,5 @@
-query getDocuments($userId: String!) {
-    documents(userId: $userId) {
+query getDocuments {
+    documents {
         id
         title
         firstName

@@ -6,11 +6,11 @@ export const useDocumentStore = defineStore('document', {
         document: null
     }),
     actions: {
-        async getDocuments(userId) {
+        async getDocuments() {
             try {
                 const { data } = await useAsyncGql({
                     operation: 'getDocuments',
-                    variables: { userId },
+                    variables: { },
                 });
 
                 this.documents = data?.value?.documents;

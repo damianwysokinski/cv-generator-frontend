@@ -12,7 +12,7 @@ const { user } = useAuthStore();
 const documentStore = useDocumentStore();
 
 const getDocuments = async () => {
-  await documentStore.getDocuments(user.id);
+  await documentStore.getDocuments();
 }
 
 const createDocument = async () => {
