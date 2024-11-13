@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import {useAuthStore} from "~/stores/auth";
+import { useAuthStore } from "~/stores/auth";
 import InputLabel from "~/components/InputLabel.vue";
+import DangerButton from "~/components/DangerButton.vue";
+import PrimaryButton from "~/components/PrimaryButton.vue";
 
 definePageMeta({
   layout: 'dashboard',
@@ -92,8 +94,12 @@ const deleteAccount = async () => {
         </div>
 
         <div class="flex items-center justify-between">
-          <button @click="deleteAccount" type="button" class="py-2.5 px-5 text-sm font-medium text-red-600 focus:outline-none bg-red-50 rounded">Delete account</button>
-          <button @click="updateProfile" type="button" class="py-2.5 px-5 text-sm font-medium text-white focus:outline-none bg-zinc-950 rounded">Save changes</button>
+          <danger-button @click="deleteAccount">
+            Delete account
+          </danger-button>
+          <primary-button @click="updateProfile">
+            Save changes
+          </primary-button>
         </div>
       </div>
       <div></div>

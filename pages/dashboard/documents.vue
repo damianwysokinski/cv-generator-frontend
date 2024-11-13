@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { v4 as uuidv4 } from 'uuid';
 import { useAuthStore } from "~/stores/auth";
 import { useDocumentStore } from "~/stores/document";
+
+import PrimaryButton from "~/components/PrimaryButton.vue";
 
 definePageMeta({
   layout: 'dashboard',
@@ -39,7 +40,10 @@ getDocuments();
   <div class="mx-auto max-w-screen-xl">
     <div class="mb-4 flex items-center justify-between">
       <h1 class="text-2xl font-semibold">Documents</h1>
-      <button @click="createDocument" type="button" class="py-2.5 px-5 text-sm font-medium text-white focus:outline-none bg-zinc-950 rounded">+ Create document</button>
+
+      <primary-button @click="createDocument">
+        + Create document
+      </primary-button>
     </div>
 
     <div class="grid gap-4 lg:grid-cols-2">
