@@ -9,7 +9,7 @@ const toastStore = useToastStore();
     <div
       v-for="toast in toastStore.toasts"
       :key="toast.id"
-      class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow" role="alert"
+      class="flex items-center w-full max-w-xs mt-2 p-4 text-gray-500 bg-white rounded-lg shadow" role="alert"
     >
       <div :class="[
         'mr-2 w-1 h-6 bg-black rounded',
