@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AppSidebar from "~/components/dashboard/AppSidebar.vue";
 import CVTemplateOne from '@/components/templates/CVTemplateOne.vue';
-import InputLabel from "~/components/InputLabel.vue";
-import TextInput from "~/components/TextInput.vue";
+import PanelComp from "~/components/dashboard/PanelComp.vue";
+import DangerButton from "~/components/DangerButton.vue";
+import PrimaryButton from "~/components/PrimaryButton.vue";
 
 import { useDocumentStore } from "~/stores/document";
 import { useAuthStore } from "~/stores/auth";
@@ -49,75 +49,35 @@ getDocument();
 </script>
 
 <template>
-  <div v-if="documentStore.document">
-    <app-sidebar>
-      <div>
-        <div class="mb-5 font-medium text-gray-900">Personal Information</div>
+  <div>
+    <div class="min-h-screen grid xl:grid-cols-[minmax(450px,_0.5fr)_1fr] items-start">
+      <div class="relative h-full xl:h-screen xl:overflow-y-scroll xl:pt-[57px] bg-white flex flex-col justify-between">
         <div>
-          <div class="mb-4">
-            <input-label for="first_name">First Name</input-label>
-            <text-input
-                v-model="documentStore.document.firstName"
-                id="first_name"
-                type="text"
-                placeholder="First Name"
-                required
-            />
-          </div>
-          <div class="mb-4">
-            <input-label for="last_name">Last Name</input-label>
-            <text-input
-                v-model="documentStore.document.lastName"
-                id="last_name"
-                type="text"
-                placeholder="Last Name"
-                required
-            />
-          </div>
-          <div class="mb-4">
-            <input-label for="position">Position</input-label>
-            <text-input
-                v-model="documentStore.document.position"
-                id="position"
-                type="text"
-                placeholder="Position"
-                required
-            />
-          </div>
-          <div class="mb-4">
-            <input-label for="email">Email</input-label>
-            <text-input
-                v-model="documentStore.document.email"
-                id="email"
-                type="email"
-                placeholder="Email"
-                required
-            />
-          </div>
-          <div class="mb-4">
-            <input-label for="phone_number">Phone number</input-label>
-            <text-input
-                v-model="documentStore.document.phoneNumber"
-                id="phone_number"
-                type="tel"
-                placeholder="Phone number"
-                required
-            />
-          </div>
+          <panel-comp title="Personal Information"></panel-comp>
+          <panel-comp title="Summary"></panel-comp>
+          <panel-comp title="Work history"></panel-comp>
+          <panel-comp title="Languages"></panel-comp>
+          <panel-comp title="Skills"></panel-comp>
+          <panel-comp title="Courses"></panel-comp>
+          <panel-comp title="Projects"></panel-comp>
+          <panel-comp title="Languages"></panel-comp>
+          <panel-comp title="Certificates"></panel-comp>
+          <panel-comp title="Interests"></panel-comp>
+        </div>
+
+        <div class="fixed md:sticky right-0 bottom-0 left-0 flex items-center justify-between py-4 px-6 shadow-2xl bg-white">
+          <danger-button @click="removeDocument">
+            Remove CV
+          </danger-button>
+          <primary-button @click="updateDocument">
+            Save CV
+          </primary-button>
         </div>
       </div>
 
-      <div class="mt-2 flex items-center justify-between">
-        <button @click="removeDocument" class="text-red-600 bg-red-50 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded text-sm px-5 py-2.5 text-center">Remove CV</button>
-        <button @click="updateDocument" class="text-white bg-zinc-950 focus:outline-none font-medium rounded text-sm px-5 py-2.5 text-center">Save CV</button>
+      <div class="-order-1 xl:order-1 pt-20 pb-6 px-6 xl:h-screen">
+        <component :is="selectedTemplate.component" />
       </div>
-    </app-sidebar>
-    <div class="mx-auto max-w-4xl shadow">
-      <component :is="selectedTemplate.component" />
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>
