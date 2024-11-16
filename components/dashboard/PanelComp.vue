@@ -7,7 +7,7 @@ const isPanelOpen = ref(false);
 </script>
 
 <template>
-  <div class="py-4 px-6 border-b select-none">
+  <div class="p-4 border-b select-none">
     <div @click="isPanelOpen = !isPanelOpen" class="font-medium text-gray-900 cursor-pointer flex items-center justify-between">
       <div>{{ title }}</div>
       <div v-if="isPanelOpen">
