@@ -19,7 +19,7 @@ const getDocuments = async () => {
 const createDocument = async () => {
   await documentStore.createDocument(user.id);
 
-  await navigateTo(`resume/${documentStore.document.id}`);
+  await navigateTo(`/resume/${documentStore.document.id}`);
 }
 
 const removeDocument = async (id: string) => {
@@ -57,7 +57,7 @@ getDocuments();
             :key="index"
             class="p-4 border rounded hover:shadow hover:border-slate-950"
         >
-          <NuxtLink :to="{ name: 'dashboard-resume-id', params: { id } }">
+          <NuxtLink :to="{ name: 'resume-id', params: { id } }">
             <div class="mb-4 flex items-center justify-between">
               <p class="font-semibold">{{ title }}</p>
               <button @click.prevent="removeDocument(id)">
