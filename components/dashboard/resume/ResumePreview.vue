@@ -14,6 +14,13 @@ const selectedTemplate = shallowRef(templates[0]);
 
 <style>
 #previewDocument ul {
-  @apply list-disc pl-5;
+  @apply pl-5;
+}
+#previewDocument ul li {
+  @apply relative;
+}
+#previewDocument ul li::before {
+  @apply absolute -left-5 text-xl leading-5;
+  content: "•";
 }
 </style>
