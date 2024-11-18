@@ -64,6 +64,7 @@ const downloadDocument = async () => {
   const width = doc.internal.pageSize.getWidth();
   const height = doc.internal.pageSize.getHeight();
 
+
   doc.html(cvPreview, {
     callback: function (doc) {
       doc.save(`${documentId}.pdf`);
@@ -71,7 +72,6 @@ const downloadDocument = async () => {
     x: 0,
     y: 0,
     width: width,
-    height: height,
     windowWidth: 774,
   })
 };
@@ -383,7 +383,7 @@ getDocument();
         </div>
       </div>
 
-      <div class="-order-1 xl:order-1 pt-20 pb-6 px-6 xl:h-screen">
+      <div class="-order-1 xl:order-1 pt-20 pb-6 px-6 xl:h-screen overflow-y-scroll">
         <resume-preview />
       </div>
     </div>
