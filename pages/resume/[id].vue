@@ -11,22 +11,37 @@ import '~/assets/css/fonts.css';
 import poppinsRegular from '@/assets/fonts/poppins/Poppins-Regular-normal.js';
 import poppinsBold from '@/assets/fonts/poppins/Poppins-Bold-normal.js';
 
+import { useAuthStore } from "~/stores/auth";
 import { useDocumentStore } from "~/stores/document";
 
 definePageMeta({
   layout: 'document',
+  middleware: ["auth"]
 })
 
 const route = useRoute();
 const documentId = route.params.id;
 
+const authStore = useAuthStore();
 const documentStore = useDocumentStore();
+
+const isAuthPopupOpen = ref(false);
+
+const handleAuthPopupVisibility = () => {
+  isAuthPopupOpen.value = !isAuthPopupOpen.value;
+};
 
 const getDocument = async () => {
   await documentStore.getDocument(documentId);
 }
 
 const downloadDocument = async () => {
+  if (!authStore.isLoggedIn) {
+    return handleAuthPopupVisibility();
+  }
+
+  await updateDocument();
+
   const cvPreview = document.getElementById("previewDocument");
 
   if (!cvPreview) return;
@@ -72,6 +87,8 @@ const removeItem = (name: string, id: number) => {
 const addItem = (name: string) => {
   documentStore.document[name].push({});
 }
+
+getDocument();
 </script>
 
 <template>
@@ -165,7 +182,7 @@ const addItem = (name: string) => {
                   <input-label :for="`experience_company_${index}`">Company name</input-label>
                 </div>
                 <text-input
-                    v-model="documentStore.document.experience[index].company"
+                    v-model="documentStore.document.experience[index].companyName"
                     :id="`experience_company_${index}`"
                     type="text"
                     placeholder=""
@@ -198,12 +215,22 @@ const addItem = (name: string) => {
           </panel-comp>
           <panel-comp title="Skills">
             <div>
-              <input-label for="skills"></input-label>
-              <text-area-input
-                  v-model="documentStore.document.skills"
-                  id="skills"
-                  rows="4"
-              />
+              <div v-for="(skill, index) in documentStore.document.skills" :key="index">
+                <div class="mb-4 p-4 border">
+                  <div class="flex items-center justify-between">
+                      <input-label :for="`skill_${index}`">Skill</input-label>
+                    <button @click="removeItem('skills', index)" class="mb-2 text-red-600">remove</button>
+                  </div>
+                  <text-input
+                      v-model="documentStore.document.skills[index].skill"
+                      :id="`skill_${index}`"
+                      type="text"
+                      placeholder=""
+                      required
+                  />
+                </div>
+              </div>
+              <button @click="addItem('skills')" class="block ml-auto text-blue-600 dark:text-blue-600">+ add item</button>
             </div>
           </panel-comp>
           <panel-comp title="Courses">
@@ -259,6 +286,18 @@ const addItem = (name: string) => {
                   </div>
                   <div class="mb-4">
                     <div class="flex items-center justify-between">
+                      <input-label :for="`project_role_${index}`">Role</input-label>
+                    </div>
+                    <text-input
+                        v-model="documentStore.document.projects[index].role"
+                        :id="`project_role_${index}`"
+                        type="text"
+                        placeholder=""
+                        required
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <div class="flex items-center justify-between">
                       <input-label :for="`project_description_${index}`">Description</input-label>
                     </div>
                     <tiptap-editor
@@ -280,7 +319,7 @@ const addItem = (name: string) => {
                     <button @click="removeItem('languages', index)" class="mb-2 text-red-600">remove</button>
                   </div>
                   <text-input
-                      v-model="documentStore.document.languages[index].name"
+                      v-model="documentStore.document.languages[index].language"
                       :id="`language_${index}`"
                       type="text"
                       placeholder=""
@@ -318,15 +357,6 @@ const addItem = (name: string) => {
                         type="text"
                         placeholder=""
                         required
-                    />
-                  </div>
-                  <div class="mb-4">
-                    <div class="flex items-center justify-between">
-                      <input-label :for="`certificate_description_${index}`">Description</input-label>
-                    </div>
-                    <tiptap-editor
-                        :id="`certificate_description_${index}`"
-                        v-model="documentStore.document.certificates[index].description"
                     />
                   </div>
                 </div>

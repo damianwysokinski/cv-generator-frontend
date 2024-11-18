@@ -2,11 +2,6 @@ query getDocuments {
     documents {
         id
         title
-        firstName
-        lastName
-        position
-        email
-        phoneNumber
         userId
         createdAt
         updatedAt

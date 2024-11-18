@@ -1,12 +1,49 @@
 query getDocument($id: String!) {
     document(id: $id) {
         id
-        title
-        firstName
-        lastName
-        position
-        email
-        phoneNumber
+        personalInfo {
+            firstName
+            lastName
+            position
+            email
+            phoneNumber
+        }
+        summary
+        experience {
+            position
+            companyName
+            city
+            startDate
+            endDate
+            currently
+            description
+        }
+        skills {
+            skill
+            proficiency
+        }
+        courses {
+            name
+            date
+        }
+        projects {
+            name
+            role
+            startDate
+            endDate
+            currently
+            description
+        }
+        languages {
+            language
+            proficiency
+        }
+        certificates {
+            name
+            issuingOrganization
+            issueDate
+        }
+        interests
         userId
         createdAt
         updatedAt

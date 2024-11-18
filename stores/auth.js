@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useCookie } from '#app';
-import {useToastStore} from "~/stores/toast.js";
+import { useToastStore } from "~/stores/toast.js";
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({

@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
 import { useToastStore } from "~/stores/toast.js";
+
 export const useDocumentStore = defineStore('document', {
     state: () => ({
         documents: [],
-        document: null
+        document: null,
     }),
     actions: {
         async getDocuments() {
@@ -21,15 +22,18 @@ export const useDocumentStore = defineStore('document', {
             }
         },
         async getDocument(id) {
-            try {
-                const { data } = await useAsyncGql({
-                  operation: 'getDocument',
-                  variables: { id },
-                });
+            const toastStore = useToastStore();
 
-                this.document = data?.value?.document;
+            try {
+                const result = await GqlGetDocument({id});
+
+                this.document = result.document;
+
+                return this.document;
             } catch (error) {
-                console.error(error);
+                toastStore.addToast(`Problem loading the document. ${error.gqlErrors[0]?.message}.`, 'error');
+
+                return error;
             }
         },
         async createDocument(userId) {
@@ -46,13 +50,13 @@ export const useDocumentStore = defineStore('document', {
                 console.error(error);
             }
         },
-        async updateDocument(id, userId, formData) {
+        async updateDocument() {
             try {
+                console.log(this.document)
                 const { updateDocument } = await GqlUpdateDocument({
-                    ...formData,
-                    id,
-                    userId
+                    ...this.document,
                 });
+
 
                 this.document = updateDocument;
             } catch (error) {
