@@ -6,7 +6,7 @@ const { document } = storeToRefs(documentStore);
 </script>
 
 <template>
-  <div class="max-w-[774px] mx-auto h-full" ref="test">
+  <div class="max-w-[774px] mx-auto h-full">
     <div id="previewDocument">
       <div v-if="document" class="bg-white h-[1092px]" style="font-family: Poppins, sans-serif; letter-spacing: 0.01px;">
         <div class="h-full">
