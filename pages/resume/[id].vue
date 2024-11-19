@@ -5,8 +5,6 @@ import ResumePreview from "~/components/dashboard/resume/ResumePreview.vue";
 
 import jsPDF from 'jspdf';
 
-import '~/assets/css/fonts.css';
-
 import poppinsRegular from '@/assets/fonts/poppins/Poppins-Regular-normal.js';
 import poppinsBold from '@/assets/fonts/poppins/Poppins-Bold-normal.js';
 
@@ -82,7 +80,7 @@ getDocument();
 
 <template>
   <div>
-    <div class="min-h-screen grid xl:grid-cols-[minmax(450px,_0.5fr)_1fr] items-start">
+    <div class="min-h-screen grid xl:grid-cols-[minmax(0,_450px)_1fr] items-start">
       <div class="relative h-full xl:h-screen xl:overflow-y-scroll xl:pt-[57px] bg-white flex flex-col justify-between">
         <resume-editor />
 
