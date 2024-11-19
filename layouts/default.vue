@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <div class="mx-auto max-w-screen-xl">
+    <div>
       <slot />
     </div>
     <app-footer />
