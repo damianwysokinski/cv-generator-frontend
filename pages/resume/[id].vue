@@ -84,7 +84,7 @@ getDocument();
       <div class="relative h-full xl:h-screen xl:overflow-y-scroll xl:pt-[57px] bg-white flex flex-col justify-between">
         <resume-editor />
 
-        <div class="fixed md:sticky right-0 bottom-0 left-0 flex items-center justify-between py-4 px-6 shadow-2xl bg-white">
+        <div class="fixed md:sticky right-0 bottom-0 left-0 flex items-center justify-between py-4 px-6 border-t bg-white">
           <div></div>
           <primary-button @click="downloadDocument">
             Export (PDF)
