@@ -52,12 +52,10 @@ export const useDocumentStore = defineStore('document', {
         },
         async updateDocument() {
             try {
-                console.log(this.document)
                 const { updateDocument } = await GqlUpdateDocument({
                     ...this.document,
                 });
-
-
+                
                 this.document = updateDocument;
             } catch (error) {
                 console.error(error);
