@@ -3,14 +3,9 @@ import { useAuthStore } from "~/stores/auth";
 
 const authStore = useAuthStore();
 
-const logout = async () => {
-  try {
-    await authStore.logout();
-
-    navigateTo('/auth/login');
-  } catch (error) {
-    console.error('Logout error', error);
-  }
+const handleLogout = async () => {
+  await authStore.logout();
+  await navigateTo('/auth/login');
 }
 </script>
 
@@ -58,7 +53,7 @@ const logout = async () => {
       </div>
       <div class="flex items-center lg:order-2">
         <button
-            @click="logout"
+            @click="handleLogout"
             class="block py-2 px-4 text-sm hover:bg-gray-100"
         >Sign out</button
         >

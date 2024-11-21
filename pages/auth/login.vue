@@ -9,16 +9,12 @@ const authStore = useAuthStore();
 const email = ref('');
 const password = ref('');
 
-const login = async () => {
-  try {
-    await authStore.login({
-      email: email.value,
-      password: password.value
-    });
-    navigateTo('/dashboard');
-  } catch (error) {
-    console.error('Login error', error);
-  }
+const handleLogin = async () => {
+  await authStore.login({
+    email: email.value,
+    password: password.value
+  });
+  await navigateTo('/dashboard');
 };
 </script>
 
@@ -30,14 +26,14 @@ const login = async () => {
           <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
             Sign in to your account
           </h1>
-          <form class="space-y-4 md:space-y-6" @submit.prevent="login">
+          <form class="space-y-4 md:space-y-6" @submit.prevent="handleLogin">
             <div>
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-              <input v-model="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="name@company.com" required="">
+              <input v-model="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="name@company.com" required>
             </div>
             <div>
               <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-              <input v-model="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required="">
+              <input v-model="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
             </div>
             <button type="submit" class="w-full text-white bg-zinc-950 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
             <p class="text-sm font-light text-gray-500">

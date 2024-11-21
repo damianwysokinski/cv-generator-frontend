@@ -18,8 +18,6 @@ export const useAuthStore = defineStore('auth', {
                 accessTokenCookie.value = result?.login?.accessToken;
                 refreshTokenCookie.value = result?.login?.refreshToken;
 
-                this.isLoggedIn = true;
-
                 await this.checkAuth();
             } catch (error) {
                 console.error('Login failed:', error);
@@ -34,13 +32,10 @@ export const useAuthStore = defineStore('auth', {
         },
         async checkAuth() {
             try {
-                const { data } = await useAsyncGql({
-                    operation: 'getUserData',
-                    variables: {},
-                });
+                const { user } = await GqlGetUserData();
 
-                if (data.value && data.value.user) {
-                    this.user = data.value.user;
+                if (user) {
+                    this.user = user;
                     this.isLoggedIn = true;
                 } else {
                     this.user = null;

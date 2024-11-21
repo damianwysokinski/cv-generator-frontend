@@ -12,18 +12,14 @@ const lastName = ref('');
 const email = ref('');
 const password = ref('');
 
-const register = async () => {
-  try {
-    await authStore.register({
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
-      password: password.value,
-    });
-    navigateTo('/auth/login');
-  } catch (error) {
-    console.error('Registration error', error);
-  }
+const handleRegister = async () => {
+  await authStore.register({
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: email.value,
+    password: password.value,
+  });
+  await navigateTo('/auth/login');
 };
 </script>
 
@@ -35,22 +31,22 @@ const register = async () => {
           <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
             Create an account
           </h1>
-          <form class="space-y-4 md:space-y-6" @submit.prevent="register">
+          <form class="space-y-4 md:space-y-6" @submit.prevent="handleRegister">
             <div>
               <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900">First name</label>
-              <input v-model="firstName" type="text" name="firstName" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="" required="">
+              <input v-model="firstName" type="text" name="firstName" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="" required>
             </div>
             <div>
               <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900">Last name</label>
-              <input v-model="lastName" type="text" name="lastName" id="lastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="" required="">
+              <input v-model="lastName" type="text" name="lastName" id="lastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="" required>
             </div>
             <div>
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-              <input v-model="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="name@company.com" required="">
+              <input v-model="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="name@company.com" required>
             </div>
             <div>
               <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-              <input v-model="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required="">
+              <input v-model="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
             </div>
             <button type="submit" class="w-full text-white bg-zinc-950 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create an account</button>
             <p class="text-sm font-light text-gray-500">
