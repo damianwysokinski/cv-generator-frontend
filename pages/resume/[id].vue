@@ -28,10 +28,6 @@ const handleAuthPopupVisibility = () => {
   isAuthPopupOpen.value = !isAuthPopupOpen.value;
 };
 
-const getDocument = async () => {
-  await documentStore.getDocument(documentId);
-}
-
 const downloadDocument = async () => {
   if (!authStore.isLoggedIn) {
     return handleAuthPopupVisibility();
@@ -75,7 +71,7 @@ const updateDocument = async () => {
   await documentStore.updateDocument();
 };
 
-getDocument();
+documentStore.getDocument(documentId);
 </script>
 
 <template>

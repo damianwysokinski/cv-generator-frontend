@@ -9,12 +9,9 @@ export const useDocumentStore = defineStore('document', {
     actions: {
         async getDocuments() {
             try {
-                const { data } = await useAsyncGql({
-                    operation: 'getDocuments',
-                    variables: { },
-                });
+                const { documents } = await GqlGetDocuments();
 
-                this.documents = data?.value?.documents;
+                this.documents = documents;
 
                 return this.documents;
             } catch (error) {
@@ -55,7 +52,7 @@ export const useDocumentStore = defineStore('document', {
                 const { updateDocument } = await GqlUpdateDocument({
                     ...this.document,
                 });
-                
+
                 this.document = updateDocument;
             } catch (error) {
                 console.error(error);
@@ -65,9 +62,10 @@ export const useDocumentStore = defineStore('document', {
             const toastStore = useToastStore();
 
             try {
+                this.documents = this.documents.filter(doc => doc.id !== id);
+
                 await GqlRemoveDocument({ id });
 
-                this.documents = this.documents.filter(doc => doc.id !== id);
                 toastStore.addToast('Document removed successfully', 'success');
             } catch (error) {
                 console.error(error);

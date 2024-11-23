@@ -12,10 +12,6 @@ definePageMeta({
 const { user } = useAuthStore();
 const documentStore = useDocumentStore();
 
-const getDocuments = async () => {
-  await documentStore.getDocuments();
-}
-
 const createDocument = async () => {
   await documentStore.createDocument(user.id);
 
@@ -37,7 +33,7 @@ const formatDate = (updatedAt: string) => {
   });
 }
 
-getDocuments();
+documentStore.getDocuments();
 </script>
 
 <template>
