@@ -6,18 +6,22 @@
   <div class="h-full">
     <div class="py-6 px-8">
       <div>
-        <div class="mb-2 font-bold text-3xl">
-          <slot name="fullName"></slot>
-        </div>
-        <div class="text-xl">
-          <slot name="position"></slot>
-        </div>
-        <div class="my-6 grid grid-cols-2">
+        <div class="mb-6 flex">
           <div>
-            <slot name="email"></slot>
-          </div>
-          <div>
-            <slot name="phoneNumber"></slot>
+            <div class="mb-2 font-bold text-3xl">
+              <slot name="fullName"></slot>
+            </div>
+            <div class="text-xl">
+              <slot name="position"></slot>
+            </div>
+            <div class="mt-6 grid gap-4 grid-cols-2">
+              <div>
+                <slot name="email"></slot>
+              </div>
+              <div>
+                <slot name="phoneNumber"></slot>
+              </div>
+            </div>
           </div>
         </div>
         <slot name="summary"></slot>
