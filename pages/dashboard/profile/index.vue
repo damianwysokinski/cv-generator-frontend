@@ -29,9 +29,15 @@ const deleteAccount = async () => {
     <div v-if="authStore.user" class="mx-auto max-w-screen-xl">
       <h1 class="mb-4 text-2xl font-semibold">Settings</h1>
 
-      <div class="p-4 bg-white rounded shadow">
+      <div class="mb-4 p-6 bg-white rounded shadow">
         <div class="mb-6 pb-6 border-b">
-          <h2 class="mb-4 text-lg font-semibold">Personal information</h2>
+          <div class="mb-6 space-y-2">
+            <h2 class="text-lg font-semibold">Personal information</h2>
+
+            <p class="text-sm text-gray-600">
+              Update your account's profile information and email address.
+            </p>
+          </div>
 
           <div class="grid xl:grid-cols-2 gap-8">
             <div>
@@ -69,7 +75,13 @@ const deleteAccount = async () => {
         </div>
 
         <div class="mb-6 pb-6 border-b">
-          <h2 class="mb-4 text-lg font-semibold">Password</h2>
+          <div class="mb-6 space-y-2">
+            <h2 class="text-lg font-semibold">Password</h2>
+
+            <p class="text-sm text-gray-600">
+              Ensure your account is using a long, random password to stay secure.
+            </p>
+          </div>
 
           <div class="grid xl:grid-cols-2 gap-8">
             <div>
@@ -93,16 +105,30 @@ const deleteAccount = async () => {
           </div>
         </div>
 
-        <div class="flex items-center justify-between">
-          <danger-button @click="deleteAccount">
-            Delete account
-          </danger-button>
+        <div class="flex items-center justify-end">
           <primary-button @click="updateProfile">
             Save changes
           </primary-button>
         </div>
       </div>
-      <div></div>
+
+      <div class="p-6 bg-white rounded shadow">
+        <div class="mb-6 pb-6 border-b">
+          <div class="mb-6 space-y-2">
+            <h2 class="text-lg font-semibold">Delete account</h2>
+
+            <p class="text-sm text-gray-600">
+              Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end">
+          <danger-button @click="deleteAccount">
+            Delete account
+          </danger-button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
