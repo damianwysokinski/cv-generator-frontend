@@ -10,13 +10,15 @@ export const useAuthStore = defineStore('auth', {
     actions: {
         async login(email, password) {
             try {
-                const result = await GqlLogin(email, password);
+                const { login } = await GqlLogin(email, password);
 
                 const accessTokenCookie = useCookie('access_token');
                 const refreshTokenCookie = useCookie('refresh_token');
 
-                accessTokenCookie.value = result?.login?.accessToken;
-                refreshTokenCookie.value = result?.login?.refreshToken;
+                const { accessToken, refreshToken } = login;
+
+                accessTokenCookie.value = accessToken;
+                refreshTokenCookie.value = refreshToken;
 
                 await this.checkAuth();
             } catch (error) {
