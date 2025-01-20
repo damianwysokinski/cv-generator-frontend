@@ -10,7 +10,7 @@ import ToastComp from "~/components/dashboard/ToastComp.vue";
       <app-navigation />
       <app-sidebar />
 
-      <main class="p-4 md:ml-64 min-h-screen pt-20">
+      <main class="p-4 md:ml-72 min-h-screen pt-20">
         <slot />
       </main>
 

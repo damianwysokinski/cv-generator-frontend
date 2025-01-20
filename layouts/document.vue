@@ -10,7 +10,7 @@ import AppSidebar from "~/components/dashboard/AppSidebar.vue";
       <app-navigation />
       <app-sidebar />
 
-      <main class="md:ml-64 min-h-screen">
+      <main class="md:ml-72 min-h-screen">
         <slot />
       </main>
       
