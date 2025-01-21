@@ -26,10 +26,10 @@ const deleteAccount = async () => {
 
 <template>
   <div>
-    <div v-if="authStore.user" class="mx-auto max-w-screen-xl">
+    <div v-if="authStore.user" class="mx-auto max-w-screen-xl space-y-6">
       <h1 class="mb-4 text-2xl font-semibold">Settings</h1>
 
-      <div class="mb-4 p-6 bg-white rounded shadow">
+      <div class="p-6 bg-white rounded shadow">
         <div class="mb-6 pb-6 border-b">
           <div class="mb-6 space-y-2">
             <h2 class="text-lg font-semibold">Personal information</h2>
@@ -74,6 +74,14 @@ const deleteAccount = async () => {
           </div>
         </div>
 
+        <div class="flex items-center justify-end">
+          <primary-button @click="updateProfile">
+            Save changes
+          </primary-button>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white rounded shadow">
         <div class="mb-6 pb-6 border-b">
           <div class="mb-6 space-y-2">
             <h2 class="text-lg font-semibold">Password</h2>
@@ -106,7 +114,7 @@ const deleteAccount = async () => {
         </div>
 
         <div class="flex items-center justify-end">
-          <primary-button @click="updateProfile">
+          <primary-button @click="">
             Save changes
           </primary-button>
         </div>
